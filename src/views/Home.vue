@@ -1,5 +1,12 @@
 <template>
-  <SelectNetwork />
+  <div>
+    <div>
+      <SelectNetwork />
+    </div>
+
+  
+  </div>
+  
 </template>
 
 <script lang="ts">

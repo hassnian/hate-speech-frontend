@@ -2,9 +2,16 @@
   <div id="app">
     <div id="nav" class="navbar navbar-expand-lg">
       <!-- <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> -->
-      
+      <router-link to="/about">About</router-link>-->
+      <b-navbar variant="faded" type="light">
+        <b-navbar-brand tag="h1" class="mb-0 text-white" href="#"><del>Hate</del>Speech</b-navbar-brand>
+      </b-navbar>
     </div>
+  
+    
+
+      
+   
 
     <router-view/>
   </div>

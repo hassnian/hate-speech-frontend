@@ -1,7 +1,9 @@
 <template>
   <div class="container d-flex h-100">
     <div class="row ustify-content-center align-self-center">
-      <h1>Selecciona la red social</h1>
+      
+
+     
     </div>
     
   </div>

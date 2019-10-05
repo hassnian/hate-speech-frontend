@@ -2,7 +2,7 @@
   <div class="mt-5">
     <h1>Este es el resultado</h1>
     <h2 class="mt-4">{{ severity }}</h2>
-    <b-progress height="2rem" class="mt-4" :max="max" show-value>
+    <b-progress height="2rem" class="mt-4 w-50 mx-auto" :max="max" show-value>
       <b-progress-bar :value="value * (0.3 / 1)" variant="success"></b-progress-bar>
       <b-progress-bar :value="value * (0.5 / 1)" variant="warning"></b-progress-bar>
       <b-progress-bar :value="value * (0.8 / 1)" variant="danger"></b-progress-bar>

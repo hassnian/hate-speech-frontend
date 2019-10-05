@@ -1,12 +1,20 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div id="nav" class="navbar navbar-expand-lg">
+      <!-- <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link> -->
+      
     </div>
+
     <router-view/>
   </div>
 </template>
+
+<script>
+export default {
+  
+}
+</script>
 
 <style lang="scss">
 #app {
@@ -25,5 +33,12 @@
       color: #42b983;
     }
   }
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 30px;
+  -webkit-box-shadow: 0 8px 6px -6px #999;
+  -moz-box-shadow: 0 8px 6px -6px #999;
+  box-shadow: 0 8px 6px -6px #999;
 }
 </style>

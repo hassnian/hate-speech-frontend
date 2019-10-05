@@ -1,13 +1,18 @@
 <template>
-
+  <div class="container d-flex h-100">
+    <div class="row ustify-content-center align-self-center">
+      <h1>Selecciona la red social</h1>
+    </div>
+    
+  </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
-export default class HelloWorld extends Vue {
-  @Prop() private msg!: string;
+export default class SelectNetwork extends Vue {
+  
 }
 </script>
 
@@ -27,4 +32,6 @@ li {
 a {
   color: #42b983;
 }
+
+
 </style>

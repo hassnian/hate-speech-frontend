@@ -28,7 +28,7 @@
           <b-form-checkbox id="checkbox-1" v-model="status" name="checkbox-1" value="accepted" unchecked-value="not_accepted" class="mt-4">Acepto los términos y condiciones de uso</b-form-checkbox>
           <div class="sr-only">State: <strong>{{ status }}</strong></div>
           <div class="mt-5 mb-5">
-            <b-button pill>Consultar</b-button>
+            <b-button pill size="lg">Consultar</b-button>
           </div>
         </div>
       </b-container>
@@ -66,6 +66,11 @@ li {
 }
 a {
   color: #42b983;
+}
+
+button {
+  background: #1abc9c;
+  border: #1abc9c;
 }
 
 

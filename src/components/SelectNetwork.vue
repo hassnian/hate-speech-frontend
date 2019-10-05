@@ -58,8 +58,7 @@
             State: <strong>{{ status }}</strong>
           </div>
           <div class="mt-5 mb-5">
-            <b-button pill size="lg">Consultar</b-button>
-            <b-button @click="checkText" pill>Consultar</b-button>
+            <b-button @click="checkText" pill size="lg">Consultar</b-button>
           </div>
         </div>
       </b-container>
@@ -98,5 +97,10 @@ li {
 }
 a {
   color: #42b983;
+}
+
+button {
+  background: #1abc9c;
+  border: #1abc9c;
 }
 </style>

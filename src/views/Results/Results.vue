@@ -1,11 +1,7 @@
 <template>
   <div>
-<<<<<<< Updated upstream
     <p>{{msg}}</p>
     <h1>{{ severity }}</h1>
-=======
-    <h1>{{severity}}</h1>
->>>>>>> Stashed changes
   </div>
 </template>
 <script lang="ts">

@@ -4,15 +4,15 @@
       <!-- <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>-->
       <b-navbar variant="faded" type="light" class="mx-auto order-0">
-        <a class="navbar-brand mx-auto" href="#"><del id="hate">Hate</del> <img :src="require('./assets/user.png')" alt="" srcset="">Speech</a>
+        <a @click="$router.push('/')"  class="navbar-brand mx-auto"><del id="hate">Hate</del> <img :src="require('./assets/user.png')" alt="" srcset="">Speech</a>
       </b-navbar>
 
     </div>
-  
-    
 
-      
-   
+
+
+
+
 
     <router-view/>
   </div>
@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  
+
 }
 </script>
 
@@ -57,7 +57,7 @@ export default {
   -webkit-box-shadow: 0 8px 6px -6px #999;
   -moz-box-shadow: 0 8px 6px -6px #999;
   box-shadow: 0 8px 6px -6px #999;
-  
+
 }
 
 img {

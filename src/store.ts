@@ -5,10 +5,12 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-
+    msg: 'asdasd',
   },
   mutations: {
-
+    changeMsg(state:any, msg:string) {
+      state.msg = msg;
+    },
   },
   actions: {
 

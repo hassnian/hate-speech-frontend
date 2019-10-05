@@ -1,5 +1,6 @@
 <template>
-  <div class="container d-flex h-100">
+
+  <div class="container h-100">
     <div class="row justify-content-center">
       <b-container>
         <h3>Selecciona una red social</h3>

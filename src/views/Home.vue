@@ -3,10 +3,7 @@
     <div>
       <SelectNetwork />
     </div>
-    <hr>
-    <div>
 
-    </div>
   
   </div>
   

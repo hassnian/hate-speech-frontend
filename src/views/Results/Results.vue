@@ -1,9 +1,18 @@
 <template>
-  <div>
-    <p>{{ msg }}</p>
-    <h1>{{ severity }}</h1>
+  <div class="mt-5">
+    <h1>Este es el resultado</h1>
+    <h2 class="mt-4">{{ severity }}</h2>
+    <b-progress height="2rem" class="mt-4" :max="max" show-value>
+      <b-progress-bar :value="value * (0.3 / 1)" variant="success"></b-progress-bar>
+      <b-progress-bar :value="value * (0.5 / 1)" variant="warning"></b-progress-bar>
+      <b-progress-bar :value="value * (0.8 / 1)" variant="danger"></b-progress-bar>
+    </b-progress>
+    <b-container class="mt-4">
+      <p>{{ msg }}</p>
+    </b-container>
   </div>
 </template>
+
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import axios from "axios";
@@ -69,3 +78,11 @@ export default class Results extends Vue {
   }
 }
 </script>
+
+<style scoped lang="scss">
+p {
+  font-size: 1.5rem;
+  font-style: italic;
+}
+
+</style>

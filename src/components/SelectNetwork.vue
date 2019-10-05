@@ -1,9 +1,13 @@
 <template>
   <div class="container d-flex h-100">
     <div class="row ustify-content-center align-self-center">
+<<<<<<< Updated upstream
       
 
      
+=======
+      <h2>Selecciona la red social</h2>
+>>>>>>> Stashed changes
     </div>
     
   </div>

@@ -1,29 +1,63 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div id="nav" class="navbar navbar-expand-lg">
+      <b-img @click="$router.go(-1)"   :src="require('@/assets/left-arrow.png')" fluid alt="Responsive image" width="30" class="pointer align-self-start"></b-img>
+      <!-- <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>-->
+      <b-navbar variant="faded" type="light" class="mx-auto order-0">
+        <a @click="$router.push('/')"  class="pointer navbar-brand mx-auto"><del id="hate">Hate</del> <img :src="require('./assets/user.png')" alt="" srcset="">Speech</a>
+      </b-navbar>
     </div>
     <router-view/>
   </div>
 </template>
 
+<script>
+export default {
+
+}
+</script>
+
 <style lang="scss">
+  .pointer{
+    cursor: pointer;
+  }
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  font-family: 'Montserrat', sans-serif;
 }
 #nav {
   padding: 30px;
   a {
-    font-weight: bold;
-    color: #2c3e50;
+    color: #070707;
+    font-family: 'Raleway', sans-serif;
+    font-size: 2vw;
+
     &.router-link-exact-active {
       color: #42b983;
     }
+
+    #hate {
+      font-family: 'Maven Pro', sans-serif;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      font-size: 2.3vw;
+    }
   }
+  align-items: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 30px;
+  -webkit-box-shadow: 0 8px 6px -6px #999;
+  -moz-box-shadow: 0 8px 6px -6px #999;
+  box-shadow: 0 8px 6px -6px #999;
+
+}
+
+img {
+  height: 3vw;
 }
 </style>

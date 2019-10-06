@@ -1,11 +1,11 @@
 <template>
   <div>
     <p v-if="listOfWords.length > 0">
-      <template v-for="word in listOfWords">
-        <span v-if="word.bad" style="color: red">
+      <template v-for="(word ,i) in listOfWords">
+        <span  :key="i" v-if="word.bad" style="color: red">
           <BadWord :word="word.word" />
         </span>
-        <span v-else-if="!word.bad">{{ word.word }} </span>
+        <span :key="i" v-else-if="!word.bad">{{ word.word }} </span>
       </template>
     </p>
     <div class="mt-5">

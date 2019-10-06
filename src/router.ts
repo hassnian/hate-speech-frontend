@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Home from './views/Home.vue';
 import ListOfComments from './views/ListOfComments/ListOfComments.vue';
 import Results from '@/views/Results/Results.vue';
+import Trends from "@/views/Trends/Trends.vue";
 
 Vue.use(Router);
 
@@ -23,6 +24,10 @@ export default new Router({
       path: '/results',
       name: 'results',
       component: Results,
+    },{
+      path: '/trends',
+      name: 'trends',
+      component: Trends,
     },
   ],
 });

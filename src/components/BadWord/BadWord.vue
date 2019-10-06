@@ -3,7 +3,7 @@
     <span :id="uuid">
       {{word}}
     </span>
-    <b-tooltip :target="uuid">Disabled tooltip</b-tooltip>
+    <b-tooltip :target="uuid">Bad word</b-tooltip>
       </span>
 </template>
 

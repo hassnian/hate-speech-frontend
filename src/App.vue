@@ -1,20 +1,13 @@
 <template>
   <div id="app">
     <div id="nav" class="navbar navbar-expand-lg">
-      <b-img @click="$router.go(-1)" :src="require('@/assets/left-arrow.png')" fluid alt="Responsive image" width="30" class="align-self-start"></b-img>
+      <b-img @click="$router.go(-1)"   :src="require('@/assets/left-arrow.png')" fluid alt="Responsive image" width="30" class="pointer align-self-start"></b-img>
       <!-- <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>-->
       <b-navbar variant="faded" type="light" class="mx-auto order-0">
-        <a @click="$router.push('/')"  class="navbar-brand mx-auto"><del id="hate">Hate</del> <img :src="require('./assets/user.png')" alt="" srcset="">Speech</a>
+        <a @click="$router.push('/')"  class="pointer navbar-brand mx-auto"><del id="hate">Hate</del> <img :src="require('./assets/user.png')" alt="" srcset="">Speech</a>
       </b-navbar>
-
     </div>
-
-
-
-
-
-
     <router-view/>
   </div>
 </template>
@@ -26,6 +19,9 @@ export default {
 </script>
 
 <style lang="scss">
+  .pointer{
+    cursor: pointer;
+  }
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

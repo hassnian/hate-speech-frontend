@@ -10,8 +10,21 @@
         <span v-else-if="!word.bad">{{word.word}} </span>
       </template>
     </p>
+  <div class="mt-5">
+    <h1>Este es el resultado</h1>
+    <h2 class="mt-4">{{ severity.toFixed(2) * 100}}%</h2>
+      <template>
+        <b-progress height="2rem" class="mt-4 w-50 mx-auto" :max="1" >
+          <b-progress-bar :value="severity" :variant="currentVariant"></b-progress-bar>
+        </b-progress>
+      </template>
+      
+    <b-container class="mt-4">
+      <p>{{ currentVariant }}</p>
+    </b-container>
   </div>
 </template>
+
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import axios from 'axios';
@@ -26,6 +39,16 @@ export default class Results extends Vue {
   msg = '';
 
   url = 'https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=AIzaSyAks8WXGgBb7YQvlDwzZz3DKDPrjDFcFlE';
+  variants = {
+    success:"success",
+    warning:"warning",
+    danger:"danger"
+  }
+
+  currentVariant = ""
+
+  url =
+    "https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=AIzaSyAks8WXGgBb7YQvlDwzZz3DKDPrjDFcFlE";
 
   msgBadWords = [];
 
@@ -37,6 +60,7 @@ export default class Results extends Vue {
     'fuck',
   ];
 
+
   severity = 0;
 
   created() {
@@ -46,6 +70,7 @@ export default class Results extends Vue {
     this.checkSeverity();
     // this.checkBadWords();
     this.compareBadWords();
+    // this.checkBadWords();
   }
 
   compareBadWords() {
@@ -79,6 +104,15 @@ export default class Results extends Vue {
     });
   }
 
+  checkSeverityBar(){
+    if(this.severity <= 0.3){
+      this.currentVariant= this.variants.success
+    } else if (this.severity <= 0.6 ){
+      this.currentVariant = this.variants.warning
+    }else {
+      this.currentVariant = this.variants.danger
+    }
+  }
   async checkSeverity() {
     const body = {
       comment: { text: this.msg },
@@ -96,6 +130,8 @@ export default class Results extends Vue {
         .then(res => res.json())
         .then((res) => {
           this.severity = res.attributeScores.TOXICITY.summaryScore.value;
+          this.checkSeverityBar()
+          console.log(this.currentVariant)
         });
     } catch (e) {
       console.log(e);
@@ -103,3 +139,12 @@ export default class Results extends Vue {
   }
 }
 </script>
+
+
+<style scoped lang="scss">
+p {
+  font-size: 1.5rem;
+  font-style: italic;
+}
+
+</style>

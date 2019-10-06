@@ -1,6 +1,6 @@
 <template>
   <div style="padding: 0 200px">
-    <b-spinner v-if="loading" variant="success" label="Spinning"></b-spinner>
+    <b-spinner v-if="loading" variant="success" label="Spinning" class="mt-5"></b-spinner>
     <b-list-group v-else-if="data" v-for="comment in data">
       <b-list-group-item v-if="comment.body !== '[deleted]'" button
          @click="selectText(comment.body)"><b>{{ comment.author }}</b> {{ comment.body }}</b-list-group-item
@@ -15,7 +15,7 @@ import data from "@/assets/data.js";
 
 @Component
 export default class SelectNetwork extends Vue {
-  data = data;
+  data = data.sort(() => Math.random() - 0.5);
   loading = true;
 
   selectText(msg:string){

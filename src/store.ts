@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    msg: 'asdasd',
+    msg: 'fuck bitch hello',
   },
   mutations: {
     changeMsg(state:any, msg:string) {

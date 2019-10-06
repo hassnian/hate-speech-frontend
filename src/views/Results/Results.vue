@@ -82,11 +82,11 @@ export default class Results extends Vue {
       "POST",
       "https://neutrinoapi-bad-word-filter.p.rapidapi.com/bad-word-filter"
     );
-    req.headers({
-      "x-rapidapi-host": "neutrinoapi-bad-word-filter.p.rapidapi.com",
-      "x-rapidapi-key": "44e9c4b8e5msh299ddc8f297da61p17b459jsn405f416842bc",
-      "content-type": "application/x-www-form-urlencoded"
-    });
+      req.headers({
+          "x-rapidapi-host": "neutrinoapi-bad-word-filter.p.rapidapi.com",
+          "x-rapidapi-key": "7c0c56670bmsh0a3ca4f12a35911p1083b7jsn72aa651ecd47",
+          "content-type": "application/x-www-form-urlencoded"
+      });
 
     req.form({
       "censor-character": "*",

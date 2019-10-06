@@ -1,137 +1,133 @@
 <template>
   <div>
-    <p>{{ msg }}</p>
-    <h1>{{ severity }}</h1>
-    <p v-if="listOfWords.length>0">
+    <p v-if="listOfWords.length > 0">
       <template v-for="word in listOfWords">
         <span v-if="word.bad" style="color: red">
-        <BadWord :word="word.word" />
+          <BadWord :word="word.word" />
         </span>
-        <span v-else-if="!word.bad">{{word.word}} </span>
+        <span v-else-if="!word.bad">{{ word.word }} </span>
       </template>
     </p>
-  <div class="mt-5">
-    <h1>Este es el resultado</h1>
-    <h2 class="mt-4">{{ severity.toFixed(2) * 100}}%</h2>
+    <div class="mt-5">
+      <h1>Result</h1>
+      <h2 class="mt-4">{{ severity.toFixed(2) * 100 }}%</h2>
       <template>
-        <b-progress height="2rem" class="mt-4 w-50 mx-auto" :max="1" >
+        <b-progress height="2rem" class="mt-4 w-50 mx-auto" :max="1">
           <b-progress-bar :value="severity" :variant="currentVariant"></b-progress-bar>
         </b-progress>
       </template>
-      
-    <b-container class="mt-4">
-      <p>{{ currentVariant }}</p>
-    </b-container>
+
+      <b-container class="mt-4">
+        <p>{{ currentVariant }}</p>
+      </b-container>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-import axios from 'axios';
-import BadWord from '@/components/BadWord/BadWord.vue';
+import { Component, Prop, Vue } from "vue-property-decorator";
+import BadWord from "@/components/BadWord/BadWord.vue";
 
-const unirest = require('unirest');
+const unirest = require("unirest");
 
 @Component({
-    components:{ BadWord },
+  components: { BadWord }
 })
 export default class Results extends Vue {
-  msg = '';
+  msg = "";
 
-  url = 'https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=AIzaSyAks8WXGgBb7YQvlDwzZz3DKDPrjDFcFlE';
+  url =
+    "https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=AIzaSyAks8WXGgBb7YQvlDwzZz3DKDPrjDFcFlE";
   variants = {
-    success:"success",
-    warning:"warning",
-    danger:"danger"
-  }
+    success: "success",
+    warning: "warning",
+    danger: "danger"
+  };
 
-  currentVariant = ""
+  currentVariant = "";
 
   url =
     "https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=AIzaSyAks8WXGgBb7YQvlDwzZz3DKDPrjDFcFlE";
 
   msgBadWords = [];
 
-
   listOfWords = [];
 
-  badWords = [
-    'bitch',
-    'fuck',
-  ];
-
+  badWords = ["bitch", "fuck"];
 
   severity = 0;
 
   created() {
     this.msg = this.$store.state.msg;
-    this.msgBadWords = this.msg.split(' ');
+    this.msgBadWords = this.msg.split(" ");
 
     this.checkSeverity();
-    // this.checkBadWords();
-    this.compareBadWords();
-    // this.checkBadWords();
+    this.checkBadWords();
+
   }
 
   compareBadWords() {
-    this.msgBadWords.forEach((word) => {
+    this.msgBadWords.forEach(word => {
       if (this.badWords.includes(word)) {
         this.listOfWords.push({ bad: true, word });
         return;
       }
       this.listOfWords.push({ bad: false, word });
     });
-    console.log(this.listOfWords);
+    console.log("list of bad words",this.listOfWords);
   }
 
   async checkBadWords() {
-    const req = unirest('POST', 'https://neutrinoapi-bad-word-filter.p.rapidapi.com/bad-word-filter');
+    const req = unirest(
+      "POST",
+      "https://neutrinoapi-bad-word-filter.p.rapidapi.com/bad-word-filter"
+    );
     req.headers({
-      'x-rapidapi-host': 'neutrinoapi-bad-word-filter.p.rapidapi.com',
-      'x-rapidapi-key': '44e9c4b8e5msh299ddc8f297da61p17b459jsn405f416842bc',
-      'content-type': 'application/x-www-form-urlencoded',
+      "x-rapidapi-host": "neutrinoapi-bad-word-filter.p.rapidapi.com",
+      "x-rapidapi-key": "44e9c4b8e5msh299ddc8f297da61p17b459jsn405f416842bc",
+      "content-type": "application/x-www-form-urlencoded"
     });
 
     req.form({
-      'censor-character': '*',
-      content: this.msg,
+      "censor-character": "*",
+      content: this.msg
     });
 
-    req.end((res) => {
+    req.end(res => {
       if (res.error) throw new Error(res.error);
-      this.badWords = res.body['bad-words-list'];
+      this.badWords = res.body["bad-words-list"];
+      this.compareBadWords();
       console.log(res.body);
     });
   }
 
-  checkSeverityBar(){
-    if(this.severity <= 0.3){
-      this.currentVariant= this.variants.success
-    } else if (this.severity <= 0.6 ){
-      this.currentVariant = this.variants.warning
-    }else {
-      this.currentVariant = this.variants.danger
+  checkSeverityBar() {
+    if (this.severity <= 0.3) {
+      this.currentVariant = this.variants.success;
+    } else if (this.severity <= 0.6) {
+      this.currentVariant = this.variants.warning;
+    } else {
+      this.currentVariant = this.variants.danger;
     }
   }
   async checkSeverity() {
     const body = {
       comment: { text: this.msg },
-      languages: ['en'],
-      requestedAttributes: { TOXICITY: {}, INSULT: {} },
+      languages: ["en"],
+      requestedAttributes: { TOXICITY: {}, INSULT: {} }
     };
     try {
       await fetch(this.url, {
-        method: 'POST',
+        method: "POST",
         body: JSON.stringify(body),
         headers: {
-          'Content-Type': 'application/json',
-        },
+          "Content-Type": "application/json"
+        }
       })
         .then(res => res.json())
-        .then((res) => {
+        .then(res => {
           this.severity = res.attributeScores.TOXICITY.summaryScore.value;
-          this.checkSeverityBar()
-          console.log(this.currentVariant)
+          this.checkSeverityBar();
         });
     } catch (e) {
       console.log(e);
@@ -140,11 +136,9 @@ export default class Results extends Vue {
 }
 </script>
 
-
 <style scoped lang="scss">
 p {
   font-size: 1.5rem;
   font-style: italic;
 }
-
 </style>

@@ -8,6 +8,7 @@
         <b-row>
           <b-col cols="4">
             <b-img
+              @click="$router.push('/list')"
               :src="require('@/assets/facebook.png')"
               fluid
               alt="Responsive image"
@@ -16,6 +17,7 @@
           </b-col>
           <b-col cols="4">
             <b-img
+              @click="$router.push('/list')"
               :src="require('@/assets/reddit.png')"
               fluid
               alt="Responsive image"
@@ -24,6 +26,7 @@
           </b-col>
           <b-col cols="4">
             <b-img
+              @click="$router.push('/list')"
               :src="require('@/assets/twitter.png')"
               fluid
               alt="Responsive image"

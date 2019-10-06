@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="padding: 0 200px">
     <b-spinner v-if="loading" variant="success" label="Spinning"></b-spinner>
     <b-list-group v-else-if="data" v-for="comment in data">
       <b-list-group-item v-if="comment.body !== '[deleted]'" button
@@ -26,8 +26,8 @@ export default class SelectNetwork extends Vue {
   created() {
     setTimeout(() => {
       this.loading = false;
-    }, 0); //TODO : change to 3000
-    data.forEach((comment: any) => console.log(comment));
+    }, 3000); //TODO : change to 3000
+    // data.forEach((comment: any) => console.log(comment));
   }
 }
 </script>

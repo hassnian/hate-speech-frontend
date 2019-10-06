@@ -95,7 +95,7 @@ export default class Results extends Vue {
 
     req.headers({
       'x-rapidapi-host': 'neutrinoapi-bad-word-filter.p.rapidapi.com',
-      'x-rapidapi-key': '1a68e1e799msh05c48f2c733f485p1fd564jsnbab97401c84c',
+      'x-rapidapi-key': '51ff0d004dmshdeaaf74a8a4749dp16a0f1jsn18c8c9c19f74',
       'content-type': 'application/x-www-form-urlencoded',
     });
 

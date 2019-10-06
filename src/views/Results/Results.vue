@@ -1,14 +1,15 @@
 <template>
   <div class="mt-5">
     <h1>Este es el resultado</h1>
-    <h2 class="mt-4">{{ severity }}</h2>
-    <b-progress height="2rem" class="mt-4 w-50 mx-auto" :max="max" show-value>
-      <b-progress-bar :value="value * (0.3 / 1)" variant="success"></b-progress-bar>
-      <b-progress-bar :value="value * (0.5 / 1)" variant="warning"></b-progress-bar>
-      <b-progress-bar :value="value * (0.8 / 1)" variant="danger"></b-progress-bar>
-    </b-progress>
+    <h2 class="mt-4">{{ severity.toFixed(2) * 100}}%</h2>
+      <template>
+        <b-progress height="2rem" class="mt-4 w-50 mx-auto" :max="1" >
+          <b-progress-bar :value="severity" :variant="currentVariant"></b-progress-bar>
+        </b-progress>
+      </template>
+      
     <b-container class="mt-4">
-      <p>{{ msg }}</p>
+      <p>{{ currentVariant }}</p>
     </b-container>
   </div>
 </template>
@@ -22,6 +23,14 @@ var unirest = require("unirest");
 export default class Results extends Vue {
   msg = "";
 
+  variants = {
+    success:"success",
+    warning:"warning",
+    danger:"danger"
+  }
+
+  currentVariant = ""
+
   url =
     "https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=AIzaSyAks8WXGgBb7YQvlDwzZz3DKDPrjDFcFlE";
 
@@ -31,7 +40,7 @@ export default class Results extends Vue {
   created() {
     this.msg = this.$store.state.msg;
     this.checkSeverity();
-    this.checkBadWords();
+    // this.checkBadWords();
   }
 
   async checkBadWords() {
@@ -54,6 +63,15 @@ export default class Results extends Vue {
     });
   }
 
+  checkSeverityBar(){
+    if(this.severity <= 0.3){
+      this.currentVariant= this.variants.success
+    } else if (this.severity <= 0.6 ){
+      this.currentVariant = this.variants.warning
+    }else {
+      this.currentVariant = this.variants.danger
+    }
+  }
   async checkSeverity() {
     const body = {
       comment: { text: this.msg },
@@ -71,6 +89,8 @@ export default class Results extends Vue {
         .then(res => res.json())
         .then(res => {
           this.severity = res.attributeScores.TOXICITY.summaryScore.value;
+          this.checkSeverityBar()
+          console.log(this.currentVariant)
         });
     } catch (e) {
       console.log(e);
@@ -78,6 +98,7 @@ export default class Results extends Vue {
   }
 }
 </script>
+
 
 <style scoped lang="scss">
 p {

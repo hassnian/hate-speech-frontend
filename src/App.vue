@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav" class="navbar navbar-expand-lg">
-      <b-img @click="$router.push('/')" :src="require('@/assets/left-arrow.png')" fluid alt="Responsive image" width="30" class="align-self-start"></b-img>
+      <b-img @click="$router.go(-1)" :src="require('@/assets/left-arrow.png')" fluid alt="Responsive image" width="30" class="align-self-start"></b-img>
       <!-- <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>-->
       <b-navbar variant="faded" type="light" class="mx-auto order-0">
